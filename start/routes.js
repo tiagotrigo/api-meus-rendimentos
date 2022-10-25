@@ -15,6 +15,7 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
+
 // Init
 Route.get('/', () => {
   return { greeting: 'API' }
@@ -28,7 +29,7 @@ Route.put('/token', 'TokenController.refreshToken')
 Route.resource('users', 'UserController').apiOnly().validator(new Map ([
   [['users.store'], ['User']], 
   [['users.update'], ['User']]
-])).middleware('auth:jwt')
+]))
 
 // Fiis
-Route.resource('fiis', 'FiiController').apiOnly().middleware('auth:jwt')
+Route.resource('fiis', 'FiiController').apiOnly()
